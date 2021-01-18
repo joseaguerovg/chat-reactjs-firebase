@@ -1,5 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
+import { Loading } from '../../components/Loading'
 
 export const LoginPage = () => {
     return (
@@ -13,7 +14,7 @@ export const LoginPage = () => {
                     <input type="password" className="auth__input" name="password" placeholder="Password" />
                 </div>
 
-                <button type="submit" class="button__primary button__fullwidth mt-4">Login</button>
+                <button type="submit" className="button__primary button__fullwidth mt-4">Login</button>
             </form>
 
             <Link to="/auth/register" className="auth__bottom-link mt-2">Create new account</Link>

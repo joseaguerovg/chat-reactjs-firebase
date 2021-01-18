@@ -16,7 +16,7 @@ export const RegisterPage = () => {
                     <input type="password" className="auth__input" name="password" placeholder="Password" />
                 </div>
 
-                <button type="submit" class="button__primary button__fullwidth mt-4">Register</button>
+                <button type="submit" className="button__primary button__fullwidth mt-4">Register</button>
             </form>
         
             <Link to="/auth/login" className="auth__bottom-link mt-2">Already register?</Link>
