@@ -1,0 +1,31 @@
+button{
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+}
+
+@mixin default-button($color){
+    @include general-radius;
+    cursor: pointer;
+    background-color: $color;
+    border: 1px solid $color;
+    color: darken($color, 55);
+    padding: 1rem;
+    font-size: 1rem;
+    transition: 200ms background ease-in;
+}
+
+@mixin button-hover($color){
+    background-color: darken($color, 10);
+}
+
+.button__primary{
+   @include default-button($principal-yellow);
+   &:hover{
+       @include button-hover($principal-yellow);
+   }
+}
+
+.button__fullwidth{
+    width: 100%;
+}
