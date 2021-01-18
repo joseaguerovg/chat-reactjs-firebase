@@ -1,0 +1,43 @@
+.auth__content{
+    align-items: center;
+    display: flex;
+    height: 100vh;
+    justify-content: center;
+    width: 100vw;
+}
+
+.auth__center-box{
+    max-width: 350px;
+    width: 95%;
+}
+
+.auth__input{
+    @include general-radius;
+    background-color: $seccond-dark;
+    border: 1px solid $seccond-dark;
+    padding: 1rem;
+    width: 100%;
+    color: lighten($principal-dark, 40);
+    
+    transition: 100ms border ease-in;
+    &::placeholder{
+        color: lighten($principal-dark, 40);
+    }
+    &:focus{
+        border: 1px solid darken($principal-yellow, 10);
+    }
+}
+
+.auth__bottom-link{
+    color: $gray;
+    font-size: .8rem;
+    display: block;
+    text-align: center;
+}
+
+.auth__logo{
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+    margin-bottom: 20px;
+}
