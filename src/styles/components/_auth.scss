@@ -41,3 +41,9 @@
     display: block;
     margin-bottom: 20px;
 }
+
+.auth__message-error{
+    color: $message-error-color;
+    text-align: center;
+    font-size: .8rem;
+}
