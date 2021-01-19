@@ -1,0 +1,26 @@
+.dropdown__content{
+    position: absolute;
+    width: 150px;
+    border-radius: .3rem;
+    background-color: darken($principal-dark, 7);
+    box-shadow: 0px 0 10px darken($seccond-dark, 5);
+    right: 0;
+    top: 25px;
+
+    button{
+        background-color: transparent;
+        border: 0px;
+    }
+}
+
+.dropdown__item{
+    color: darken($gray, 20);
+    padding: .8rem 1rem;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+
+    span{
+        margin-left: 10px;
+    }
+}

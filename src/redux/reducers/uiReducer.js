@@ -2,7 +2,8 @@ import { types } from "../types/types";
 
 const initialState = {
     loading: false,
-    formErrorMessage: null
+    formErrorMessage: null,
+    dropdopwnAuthIsVisible: false
 }
 
 export const uiReducer = (state = initialState, { type, payload }) => {
@@ -26,6 +27,16 @@ export const uiReducer = (state = initialState, { type, payload }) => {
             return {
                 ...state,
                 formErrorMessage: null
+            }
+        case types.UI_OPEN_DROPDOWN_AUTH:
+            return {
+                ...state,
+                dropdopwnAuthIsVisible: true
+            }
+        case types.UI_CLOSE_DROPDOWN_AUTH:
+            return {
+                ...state,
+                dropdopwnAuthIsVisible: false
             }
         default:
             return state;
