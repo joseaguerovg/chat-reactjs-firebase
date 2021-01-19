@@ -1,11 +1,9 @@
 import { createStore, combineReducers, compose, applyMiddleware } from 'redux';
 import thunk from 'redux-thunk';
 
-import { uiReducer } from '../reducers/uiReducer';
+import { rootReducers } from '../reducers';
 
-const reducers = combineReducers({
-    ui: uiReducer
-});
+const reducers = combineReducers(rootReducers);
 
 const composeEnhancers = (typeof window !== 'undefined' && window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__) || compose;
 
