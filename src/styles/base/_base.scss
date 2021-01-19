@@ -2,6 +2,7 @@
     font-family: Helvetica, sans-serif;
     margin: 0;
     outline: 0;
+    box-sizing: border-box;
 }
 
 html{
@@ -50,6 +51,10 @@ main{
 
 .mb-4{
     margin-bottom: 20px;
+}
+
+.wrapper{
+    display: flex;
 }
 
 @mixin general-radius {

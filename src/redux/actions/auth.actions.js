@@ -35,7 +35,7 @@ export const startRegister = (email, password, name) => {
                     displayName: name
                 })
 
-                createUserDoc(user.uid, name);
+                await createUserDoc(user.uid, name);
 
                 dispatch(loginAction(user.uid, name));
                 dispatch(finishLoadingAction());
@@ -55,7 +55,7 @@ export const startLogout = () => {
             .then(() => {
                 db.collection('users').doc(uid).update({
                     loggedIn: false, 
-                    last_connected: Date.now()
+                    last_connected: firebase.firestore.FieldValue.serverTimestamp()
                 });
                 dispatch(logoutAction());
             })
@@ -66,8 +66,10 @@ export const startLogout = () => {
 export const createUserDoc = (uid, name) => {
     return db.collection('users').doc(uid).set({
         name,
+        avatar: '',
         loggedIn: true,
-        last_connected: null
+        last_connected: null,
+        chats: []
     });
 }
 
