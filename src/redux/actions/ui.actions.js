@@ -24,3 +24,11 @@ export const openDropdownAuth = () => ({
 export const closeDropdownAuth = () => ({
     type: types.UI_CLOSE_DROPDOWN_AUTH
 })
+
+export const openUsersModal = () => ({
+    type: types.UI_OPEN_USERS_MODAL
+})
+
+export const closeUsersModal = () => ({
+    type: types.UI_CLOSE_USERS_MODAL
+})

@@ -3,7 +3,8 @@ import { types } from "../types/types";
 const initialState = {
     loading: false,
     formErrorMessage: null,
-    dropdopwnAuthIsVisible: false
+    dropdopwnAuthIsVisible: false,
+    usersModalIsVisible: false,
 }
 
 export const uiReducer = (state = initialState, { type, payload }) => {
@@ -37,6 +38,16 @@ export const uiReducer = (state = initialState, { type, payload }) => {
             return {
                 ...state,
                 dropdopwnAuthIsVisible: false
+            }
+        case types.UI_OPEN_USERS_MODAL:
+            return {
+                ...state,
+                usersModalIsVisible: true
+            }
+        case types.UI_CLOSE_USERS_MODAL:
+            return {
+                ...state,
+                usersModalIsVisible: false
             }
         default:
             return state;

@@ -40,3 +40,13 @@
     color: darken($gray, 20);
     position: relative;
 }
+
+.sidebar__open-new-chat{
+    background-color: $principal-yellow;
+    padding: 1rem;
+    cursor: pointer;
+
+    span{
+        margin-left: 10px;
+    }
+}
