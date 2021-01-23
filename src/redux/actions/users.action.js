@@ -11,15 +11,15 @@ export const startGetUsers = () => {
         dispatch(startLoadingAction())
         db.collection('users')
             .orderBy('loggedIn', 'desc')
-            .get()
-            .then(snaps => {              
+            .onSnapshot(snaps => {              
                 const users = [];
 
                 snaps.forEach(snap => {
                     if(snap.id !== uid){
                         users.push({
                             id: snap.id,
-                            ...snap.data()
+                            name: snap.data().name,
+                            loggedIn: snap.data().loggedIn
                         })
                     }
                 })
@@ -27,10 +27,6 @@ export const startGetUsers = () => {
                 dispatch(getUsersSuccess(users));
                 dispatch(finishLoadingAction());
 
-            })
-            .catch(error => {
-                console.log(error);
-                dispatch(finishLoadingAction());
             });
     }
 }
