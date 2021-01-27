@@ -55,7 +55,7 @@ export const startLogout = () => {
             .then(() => {
                 db.collection('users').doc(uid).update({
                     loggedIn: false, 
-                    last_connected: firebase.firestore.FieldValue.serverTimestamp()
+                    last_connect: firebase.firestore.FieldValue.serverTimestamp()
                 });
                 dispatch(logoutAction());
             })
@@ -68,7 +68,7 @@ export const createUserDoc = (uid, name) => {
         name,
         avatar: '',
         loggedIn: true,
-        last_connected: null,
+        last_connect: null,
         chats: []
     });
 }
