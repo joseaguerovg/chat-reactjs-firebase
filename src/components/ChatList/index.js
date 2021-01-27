@@ -19,18 +19,17 @@ export const ChatList = () => {
                 const chats = snaps.data().chats;
 
                 chats.sort((a, b) => (a.date > b.date) ? -1 : 1);
-                
                 dispatch(loadChats(chats));
-
             });
+        
         return () => unsubscribe()
-    }, [])
+    }, [dispatch, uid])
 
     return (
         <div className="chat__list">
             {
                 chats.map(chat => (
-                    <ChatListItem {...chat} />        
+                    <ChatListItem key={chat.chatId} {...chat} />        
                 ))
             }
         </div>

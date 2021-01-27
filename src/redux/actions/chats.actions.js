@@ -29,6 +29,7 @@ export const startCreateAChat = (uidSelected, nameSelected) => {
                             last_message: null,
                             chatId: newChat.id,
                             userId: uidSelected,
+                            active: true,
                             date: Date.now()
                         })
                     })
@@ -60,6 +61,28 @@ export const startCreateAChat = (uidSelected, nameSelected) => {
     }
 }
 
+export const startGetChatMessages = (chatId, userId) => {
+    return async (dispatch) => {
+        dispatch(startLoadingAction());
+
+        const userData = await db.collection('users').doc(userId).get();
+        const chatData = await db.collection('chats').doc(chatId).get();
+
+        const { name, loggedIn } = userData.data();
+        const { messages } = chatData.data();
+
+        dispatch(activeChat({
+            chatId,
+            name,
+            loggedIn,
+            messages
+        }));
+
+        dispatch(finishLoadingAction());
+
+    }
+}
+
 const getExistChat = async (uid, uidSelected) => {
 
     const chatsQuery = await db.collection('chats').where('users', 'array-contains', uid).get();
@@ -85,5 +108,10 @@ export const createAChat = (data) => ({
 
 export const loadChats = (data) => ({
     type: types.GET_CHATS_START,
+    payload: data
+})
+
+export const activeChat = (data) => ({
+    type: types.CHAT_ACTIVE,
     payload: data
 })

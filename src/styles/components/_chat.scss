@@ -10,3 +10,33 @@
         color: darken($principal-dark, 8);
     }
 }
+
+.chat__list-item{
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    padding: .8rem 1rem;
+    border-bottom: 1px solid $principal-dark;
+    transition: 200ms background-color ease-in;
+
+    &:hover{
+        background-color: darken($seccond-dark, 2);
+    }
+
+    &-avatar{
+        background-color: $principal-dark;  
+        color: darken($gray, 40);
+        display: flex;
+        font-size: 1.5rem;
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        justify-content: center;
+        align-items: center;
+    }
+
+    &-info{
+        color: darken($gray, 30);
+        margin-left: 1rem;
+    }
+}

@@ -20,7 +20,7 @@ export const chatsReducer = (state = initialState, { type, payload }) => {
         case types.CHAT_ACTIVE:
             return {
                 ...state,
-                active: { payload }
+                active: payload
             }
         default:
             return state;
