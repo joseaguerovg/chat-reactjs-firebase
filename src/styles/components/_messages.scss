@@ -1,0 +1,54 @@
+.messages{
+    &__main{
+        display: flex;
+        flex-direction: column;
+        height: 100vh;
+        justify-content: space-between;
+    }
+
+    &__head{
+        background-color: darken($seccond-dark, 3);
+        padding: 1rem;
+        display: flex;
+        align-items: center;
+
+        &-avatar{
+            background-color: $principal-dark;  
+            color: darken($gray, 40);
+            display: flex;
+            font-size: 1.5rem;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            justify-content: center;
+            align-items: center;
+        }
+
+        &-info{
+            margin-left: 15px;
+            margin-right: auto;
+            color: darken($gray, 30);
+
+            &-status-on{
+                color: #0f5132;
+            }
+
+            &-status-off{
+                color: #842029;
+            }
+        }
+
+        &-icon{
+            color: darken($gray, 30);
+            cursor: pointer;
+        }
+    }
+
+    &__body{
+        border: 1px solid green;
+    }
+
+    &__send{
+        border: 1px solid blue;
+    }
+}

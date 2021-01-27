@@ -65,16 +65,13 @@ export const startGetChatMessages = (chatId, userId) => {
     return async (dispatch) => {
         dispatch(startLoadingAction());
 
-        const userData = await db.collection('users').doc(userId).get();
         const chatData = await db.collection('chats').doc(chatId).get();
 
-        const { name, loggedIn } = userData.data();
         const { messages } = chatData.data();
 
         dispatch(activeChat({
             chatId,
-            name,
-            loggedIn,
+            userId,
             messages
         }));
 
