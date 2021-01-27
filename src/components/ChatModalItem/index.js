@@ -1,16 +1,24 @@
 import React from 'react'
 import { faPlus } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { useDispatch } from 'react-redux';
+import { startCreateAChat } from '../../redux/actions/chats.actions';
 
 export const ChatModalItem = ({user}) => {
 
-    const { name, loggedIn } = user;
+    const dispatch = useDispatch();
+
+    const { id, name, loggedIn } = user;
 
     const firsLetter = name.charAt(0) || undefined;
 
+    const handleClickCreateAChat = (uidSelected, nameSelected) => {
+        dispatch(startCreateAChat(uidSelected, nameSelected));
+    }
+
     return (
-        <div className="modal__user-item">
-            <div className="modal__avatar">{firsLetter}</div>
+        <div className="modal__user-item" onClick={ () => handleClickCreateAChat(id, name) }>
+            <div className="modal__avatar">{firsLetter.toUpperCase()}</div>
             <div className="modal__info">
                 <span className="modal__name">{ name }</span>
                 

@@ -5,6 +5,7 @@ import { faPlus } from '@fortawesome/free-solid-svg-icons'
 import { useDispatch } from 'react-redux'
 import { openUsersModal } from '../../redux/actions/ui.actions'
 import { startGetUsers } from '../../redux/actions/users.action'
+import { ChatList } from '../ChatList'
 
 export const Sidebar = () => {
 
@@ -24,6 +25,8 @@ export const Sidebar = () => {
                 <span>New chat</span>
             </div>
 
+
+            <ChatList />
         </aside>
     )
 }

@@ -17,4 +17,13 @@ export const types = {
     GET_USERS_START: '[Users] GET Users Start',
     GET_USERS_SUCCESS: '[Users] GET Users Success',
     GET_USERS_FAILURE: '[Users] GET Users Failure',
+
+    GET_CHATS_START: '[Chats] GET Chats Start',
+    GET_CHATS_SUCCESS: '[Chats] GET Chats Success',
+    GET_CHATS_FAILURE: '[Chats] GET Chats Failure',
+
+    CHAT_CREATE: '[Chat] Create Chat',
+    CHAT_ACTIVE: '[Chat] Active Chat',
+    CHAT_ADD_SECCOND_USER: '[Chat] Add Seccond User'
+
 }
