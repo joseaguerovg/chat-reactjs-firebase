@@ -1,14 +1,11 @@
 import React from 'react'
-import { useDispatch } from 'react-redux';
 import { useOutsideClick } from '../../hooks/useOutsideClick';
-import { closeDropdownAuth } from '../../redux/actions/ui.actions';
 import { DropdownButton } from '../DropdownButton'
 
-export const DropDown = ({ items }) => {
+export const DropDown = ({ items, setDropdownAuth }) => {
 
-    const dispatch = useDispatch();
     const closeDropdown = () => {
-        dispatch(closeDropdownAuth());
+        setDropdownAuth(false);
     }
 
     const dropdownRef = useOutsideClick(closeDropdown);

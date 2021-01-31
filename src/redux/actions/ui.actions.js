@@ -17,14 +17,6 @@ export const removeFormError = () => ({
     type: types.UI_REMOVE_FORM_ERROR
 })
 
-export const openDropdownAuth = () => ({
-    type: types.UI_OPEN_DROPDOWN_AUTH
-})
-
-export const closeDropdownAuth = () => ({
-    type: types.UI_CLOSE_DROPDOWN_AUTH
-})
-
 export const openUsersModal = () => ({
     type: types.UI_OPEN_USERS_MODAL
 })

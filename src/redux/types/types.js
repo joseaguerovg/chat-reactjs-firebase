@@ -8,9 +8,6 @@ export const types = {
     UI_SET_FORM_ERROR: '[UI] Set Form Error',
     UI_REMOVE_FORM_ERROR: '[UI] Remove Form Error',
 
-    UI_OPEN_DROPDOWN_AUTH: '[UI] Open Dropdown Auth',
-    UI_CLOSE_DROPDOWN_AUTH: '[UI] Close Dropdown Auth',
-
     UI_OPEN_USERS_MODAL: '[UI] Open Users Modal',
     UI_CLOSE_USERS_MODAL: '[UI] Close Users Modal',
 

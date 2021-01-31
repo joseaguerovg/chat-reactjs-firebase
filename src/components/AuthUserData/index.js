@@ -1,24 +1,20 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faChevronDown, faSignOutAlt, faCog } from '@fortawesome/free-solid-svg-icons'
 import { DropDown } from '../Dropdown'
 import { startLogout } from '../../redux/actions/auth.actions'
-import { closeDropdownAuth, openDropdownAuth } from '../../redux/actions/ui.actions'
 
 export const AuthUserData = () => {
 
     const dispatch = useDispatch();
 
-    const { auth, ui } = useSelector(state => state)
+    const { auth } = useSelector(state => state)
+    const [dropdownAuth, setDropdownAuth] = useState(false);
     const firstLetter = (auth.name) ? auth.name.charAt(0) : '';
 
     const handleClickDropdown = () => {
-        if(!ui.dropdopwnAuthIsVisible){
-            dispatch(openDropdownAuth());
-        }else{
-            dispatch(closeDropdownAuth());
-        }
+        setDropdownAuth(!dropdownAuth);
     }
 
     const handleLogout = () => {
@@ -51,8 +47,8 @@ export const AuthUserData = () => {
                 <FontAwesomeIcon icon={faChevronDown} onClick={handleClickDropdown} />
 
                 {
-                    (ui.dropdopwnAuthIsVisible) 
-                        && <DropDown items={itemsDropdown} />
+                    (dropdownAuth) 
+                        && <DropDown items={itemsDropdown} setDropdownAuth={setDropdownAuth} />
                 }
                 
             </div>

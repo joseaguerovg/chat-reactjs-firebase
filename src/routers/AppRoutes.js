@@ -13,7 +13,6 @@ import { PrivateRoute } from './PrivateRoute';
 import { firebase } from '../firebase/firebase.config';
 import { Loading } from '../components/Loading';
 import { loginAction } from '../redux/actions/auth.actions';
-import { closeDropdownAuth } from '../redux/actions/ui.actions';
 
 export const AppRouter = () => {
 
@@ -33,8 +32,6 @@ export const AppRouter = () => {
             }else{
                 setIsLoggedIn(false);
             }
-
-            dispatch(closeDropdownAuth());
             setCheckingLogged(false);
         })
     }, [dispatch, setIsLoggedIn, setCheckingLogged]);

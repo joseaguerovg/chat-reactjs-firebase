@@ -28,17 +28,7 @@ export const uiReducer = (state = initialState, { type, payload }) => {
             return {
                 ...state,
                 formErrorMessage: null
-            }
-        case types.UI_OPEN_DROPDOWN_AUTH:
-            return {
-                ...state,
-                dropdopwnAuthIsVisible: true
-            }
-        case types.UI_CLOSE_DROPDOWN_AUTH:
-            return {
-                ...state,
-                dropdopwnAuthIsVisible: false
-            }
+            }        
         case types.UI_OPEN_USERS_MODAL:
             return {
                 ...state,
