@@ -1,4 +1,5 @@
 import React from 'react'
+import { ChatActiveBody } from '../ChatActiveBody'
 import { ChatActiveHead } from '../ChatActiveHead'
 import { ChatActiveSendMessage } from '../ChatActiveSendMessage'
 
@@ -8,9 +9,7 @@ export const ChatActive = () => {
 
             <ChatActiveHead />
 
-            <div className="messages__body">
-                Body
-            </div>
+            <ChatActiveBody />
 
             <ChatActiveSendMessage />
             

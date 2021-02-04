@@ -64,16 +64,16 @@ export const startGetChatMessages = (chatId, userId) => {
     return async (dispatch) => {
         dispatch(startLoadingAction());
 
-        const chatData = await db.collection('chats').doc(chatId).get();
-
-        const { messages } = chatData.data();
-
-        dispatch(activeChat({
-            chatId,
-            userId,
-            messages
-        }));
-
+        db.collection('chats')
+            .doc(chatId)
+            .onSnapshot(snap => {
+                const { messages } = snap.data();
+                dispatch(activeChat({
+                    chatId,
+                    userId,
+                    messages
+                }));
+            });
         dispatch(finishLoadingAction());
 
     }
