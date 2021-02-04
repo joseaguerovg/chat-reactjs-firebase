@@ -100,7 +100,12 @@ export const startSendMessage = (message) => {
             updateLastMessageUsers(userId, message, chatId)
         }
 
-        // db.collection('chats').doc(chatId).
+        db.collection('chats').doc(chatId).update({
+            messages: firebase.firestore.FieldValue.arrayUnion({
+                content: message,
+                userId: uid
+            })
+        })
 
     }
 }

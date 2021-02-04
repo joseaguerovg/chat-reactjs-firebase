@@ -9,7 +9,7 @@ export const ChatActiveSendMessage = () => {
 
     const dispatch = useDispatch();
     const formRef = useRef();
-    const [values, handleInputChange] = useForm({
+    const [values, handleInputChange, reset] = useForm({
         message: ''
     });
 
@@ -18,12 +18,14 @@ export const ChatActiveSendMessage = () => {
     const handleSubmit = (e) => {
         e.preventDefault();
         dispatch(startSendMessage(message));
+        reset();
     }
 
     const handleEnterPress = (e) => {
         if(e.keyCode === 13){
             e.preventDefault();
             handleSubmit(e);
+            reset();
         }
     }
 
