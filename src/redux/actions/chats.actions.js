@@ -34,21 +34,10 @@ export const startCreateAChat = (uidSelected, nameSelected) => {
                     })
 
                 dispatch(closeUsersModal());
-
-                // await db.collection('users')
-                //     .doc(uidSelected)
-                //     .update({
-                //         chats: firebase.firestore.FieldValue.arrayUnion({
-                //             name: name,
-                //             last_message: null,
-                //             chatId: newChat.id,
-                //             userId: uid
-                //         })
-                //     })
-
                     
             }else{
-                console.log('false');
+                dispatch(startGetChatMessages(existChat, uidSelected));
+                dispatch(closeUsersModal());
             }
             dispatch(finishLoadingAction());
         } catch (error) {
@@ -165,7 +154,7 @@ const getExistChat = async (uid, uidSelected) => {
         const existChatUserSelected = [...users].find(item => item === uidSelected);
         
         if(existChatUserSelected !== undefined) {
-            boolExist = true;
+            boolExist = doc.id;
             return;
         }
     })
