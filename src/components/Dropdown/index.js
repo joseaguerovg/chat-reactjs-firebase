@@ -5,6 +5,7 @@ import { DropdownButton } from '../DropdownButton'
 export const DropDown = ({ items, setDropdownAuth }) => {
 
     const closeDropdown = () => {
+        console.log(setDropdownAuth);
         setDropdownAuth(false);
     }
 

@@ -6,7 +6,7 @@ import { db } from '../../firebase/firebase.config'
 
 export const ChatActiveHead = () => {
 
-    const { chatId, userId } = useSelector(state => state.chats.active);
+    const { userId } = useSelector(state => state.chats.active);
     const [name, setName] = useState('');
     const [loggedIn, setLoggedIn] = useState(false);
 
@@ -16,8 +16,6 @@ export const ChatActiveHead = () => {
             .doc(userId)
             .onSnapshot(snap => {
                 const data = snap.data();
-                const dateLastConnect = new Date(data.last_connect.seconds)
-                console.log(data);
                 setName(data.name);
                 setLoggedIn(data.loggedIn);
             })

@@ -10,7 +10,7 @@ export const ChatList = () => {
     const dispatch = useDispatch();  
 
     const uid = auth.uid;
-    const chats = chatsState.chats;
+    const { chats } = chatsState;
 
     useEffect(() => {
         const unsubscribe = db.collection(`users`)

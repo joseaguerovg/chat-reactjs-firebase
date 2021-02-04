@@ -29,7 +29,6 @@ export const startCreateAChat = (uidSelected, nameSelected) => {
                             last_message: null,
                             chatId: newChat.id,
                             userId: uidSelected,
-                            active: true,
                             date: Date.now()
                         })
                     })
@@ -78,6 +77,77 @@ export const startGetChatMessages = (chatId, userId) => {
         dispatch(finishLoadingAction());
 
     }
+}
+
+export const startSendMessage = (message) => {
+    return async (dispatch, getState) => {
+
+        const { auth, chats: chatsState } = getState();
+
+        const { chatId, userId } = chatsState.active;
+
+        const { uid, name } = auth;
+
+        const userData = await db.collection('users').doc(userId).get();
+
+        const chats = userData.data().chats;
+
+        if(!existSeccondChat(chats, chatId)){
+            // Agrego el chat a la lista del usuario que no inició el chat.
+            createASeccondChat({chatId, message, name, uid, userId})
+        }else{
+            updateLastMessageUsers(uid, message, chatId)
+            updateLastMessageUsers(userId, message, chatId)
+        }
+
+        // db.collection('chats').doc(chatId).
+
+    }
+}
+
+const updateLastMessageUsers = async (id, message, chatId) => {
+    try {
+        const usersCollection = db.collection('users');
+        
+        const { chats } = await (await usersCollection.doc(id).get()).data();
+
+        const indexChat = [...chats].findIndex(chat => chat.chatId === chatId)
+
+        if(indexChat >= 0){
+            chats[indexChat] = {
+                ...chats[indexChat],
+                last_message: message,
+                date: Date.now()
+            };
+        }
+
+        usersCollection.doc(id).update({chats});
+        
+    } catch (error) {
+        console.log(error);
+    }
+}
+
+const createASeccondChat = ({chatId, message, name, uid: userId, userId: userSeccondId}) => {
+    const newChat = {
+        chatId,
+        date: Date.now(),
+        last_message: message,
+        name,
+        userId
+    }
+
+    db.collection('users').doc(userSeccondId).update({
+        chats: firebase.firestore.FieldValue.arrayUnion(newChat)
+    });
+}
+
+const existSeccondChat = (chats, chatId) => {
+    if(chats.length === 0) return false
+
+    const exist = [...chats].find(chat => chat.chatId === chatId);
+
+    return (exist === undefined) ? false : exist;
 }
 
 const getExistChat = async (uid, uidSelected) => {

@@ -39,4 +39,18 @@
         color: darken($gray, 30);
         margin-left: 1rem;
     }
+
+    &-active{
+        background-color: darken($seccond-dark, 2);
+    }
+}
+
+.chat__last-message{
+    color: darken($gray, 40);
+    font-size: .8rem;
+    width: calc(100% - 50px);
+    max-width: 200px;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
 }
