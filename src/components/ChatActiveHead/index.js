@@ -1,14 +1,19 @@
 import React, { useEffect, useState } from 'react'
-import { useSelector } from 'react-redux'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faEllipsisV } from '@fortawesome/free-solid-svg-icons'
+import { useDispatch, useSelector } from 'react-redux'
 import { db } from '../../firebase/firebase.config'
+import { startDeleteChatList } from '../../redux/actions/chats.actions'
 
 export const ChatActiveHead = () => {
+
+    const dispatch = useDispatch();
 
     const { userId } = useSelector(state => state.chats.active);
     const [name, setName] = useState('');
     const [loggedIn, setLoggedIn] = useState(false);
+
+    const handleDeleteChat = () => {
+        dispatch(startDeleteChatList());
+    }
 
     useEffect(() => {
 
@@ -42,8 +47,8 @@ export const ChatActiveHead = () => {
                 
             </div>
 
-            <div>
-                <FontAwesomeIcon icon={faEllipsisV} size="lg" className="messages__head-icon" />
+            <div className="messages__head-delete" onClick={handleDeleteChat}>
+                Eliminar
             </div>
         </div>
     )

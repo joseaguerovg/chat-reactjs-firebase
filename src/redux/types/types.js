@@ -21,6 +21,7 @@ export const types = {
 
     CHAT_CREATE: '[Chat] Create Chat',
     CHAT_ACTIVE: '[Chat] Active Chat',
-    CHAT_ADD_SECCOND_USER: '[Chat] Add Seccond User'
+    CHAT_ADD_SECCOND_USER: '[Chat] Add Seccond User',
+    CHAT_ACTIVE_RESET: '[Chat] Reset null chat active'
 
 }

@@ -1,15 +1,29 @@
-import React, { useEffect, useRef } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import { useSelector } from 'react-redux'
+import { db } from '../../firebase/firebase.config'
 import { ChatActiveBodyMessage } from '../ChatActiveBodyMessage'
 
 export const ChatActiveBody = () => {
 
-    const { messages } = useSelector(state => state.chats.active)
+    const { chatId } = useSelector(state => state.chats.active)
+
+    const [messages, setMessages] = useState([]);
 
     const messageRef = useRef();
 
     useEffect(() => {
-        messageRef.current.scrollIntoView({behavior: 'smooth'});
+        const unsubscribe = db.collection('chats')
+            .doc(chatId)
+            .onSnapshot(snap => {
+                const { messages } = snap.data();
+                setMessages(messages);
+            });
+
+        return () => unsubscribe();
+    }, [chatId, setMessages])
+
+    useEffect(() => {
+        messageRef.current.scrollIntoView({block: 'end'});
     }, [messages])
 
     return (

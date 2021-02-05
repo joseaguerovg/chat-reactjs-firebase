@@ -2,6 +2,7 @@ import Swal from 'sweetalert2';
 
 import { firebase, db } from '../../firebase/firebase.config';
 import { types } from '../types/types';
+import { resetChatActive } from './chats.actions';
 import { finishLoadingAction, startLoadingAction } from "./ui.actions"
 
 export const startLogin = (email, password) => {
@@ -58,6 +59,7 @@ export const startLogout = () => {
                     last_connect: firebase.firestore.FieldValue.serverTimestamp()
                 });
                 dispatch(logoutAction());
+                dispatch(resetChatActive());
             })
         
     }

@@ -22,6 +22,12 @@ export const chatsReducer = (state = initialState, { type, payload }) => {
                 ...state,
                 active: payload
             }
+        case types.CHAT_ACTIVE_RESET:{
+            return {
+                ...state,
+                active: null
+            }
+        }
         default:
             return state;
     }

@@ -32,20 +32,55 @@ export const startCreateAChat = (uidSelected, nameSelected) => {
                             date: Date.now()
                         })
                     })
-
+                
+                dispatch(startGetChatMessages(newChat.id, uidSelected));
                 dispatch(closeUsersModal());
                     
             }else{
+                const { chats } = getState().chats;
+
+                const chatInList = [...chats].findIndex(chat => chat.chatId === existChat);
+
+                if(chatInList < 0){
+                    await db.collection('users')
+                    .doc(uid)
+                    .update({
+                        chats: firebase.firestore.FieldValue.arrayUnion({
+                            name: nameSelected,
+                            last_message: null,
+                            chatId: existChat,
+                            userId: uidSelected,
+                            date: Date.now()
+                        })
+                    })
+                }
+
                 dispatch(startGetChatMessages(existChat, uidSelected));
                 dispatch(closeUsersModal());
             }
             dispatch(finishLoadingAction());
         } catch (error) {
             Swal.fire('Error', error.message, 'error');
-            dispatch(finishLoadingAction);
+            dispatch(finishLoadingAction());
         }
         
     
+    }
+}
+
+export const startDeleteChatList = () => {
+    return async (dispatch, getState) => {
+        const { auth, chats: chatState } = getState()
+
+        const { chatId } = chatState.active
+
+        dispatch(resetChatActive());
+
+        await db.collection('users').doc(auth.uid).update({
+            chats: chatState.chats.filter(chat => chat.chatId !== chatId )
+        })
+
+        
     }
 }
 
@@ -53,16 +88,11 @@ export const startGetChatMessages = (chatId, userId) => {
     return async (dispatch) => {
         dispatch(startLoadingAction());
 
-        db.collection('chats')
-            .doc(chatId)
-            .onSnapshot(snap => {
-                const { messages } = snap.data();
-                dispatch(activeChat({
-                    chatId,
-                    userId,
-                    messages
-                }));
-            });
+        dispatch(activeChat({
+            chatId,
+            userId
+        }));
+
         dispatch(finishLoadingAction());
 
     }
@@ -175,4 +205,8 @@ export const loadChats = (data) => ({
 export const activeChat = (data) => ({
     type: types.CHAT_ACTIVE,
     payload: data
+})
+
+export const resetChatActive = () => ({
+    type: types.CHAT_ACTIVE_RESET
 })
