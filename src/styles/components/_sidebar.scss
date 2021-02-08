@@ -3,6 +3,28 @@
     height: 100vh;
     width: 100%;
     max-width: 320px;
+    transition: 200ms;
+}
+
+.sidebar__active{
+    transition: 1s;
+}
+
+@media (max-width: 720px){
+    .sidebar__wrapper{
+        max-width: 250px;
+    }
+}
+
+@media (max-width: 580px){
+    .sidebar__wrapper{
+        max-width: 100%;
+        position: absolute;
+    }
+
+    .sidebar__active{
+        left: -100%;
+    }
 }
 
 .sidebar__content-user-data{

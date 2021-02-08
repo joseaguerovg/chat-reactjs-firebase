@@ -3,6 +3,11 @@ import { useDispatch, useSelector } from 'react-redux'
 import { db } from '../../firebase/firebase.config'
 import { startDeleteChatList } from '../../redux/actions/chats.actions'
 
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faArrowLeft } from '@fortawesome/free-solid-svg-icons'
+
+import { resetChatActive } from '../../redux/actions/chats.actions';
+
 export const ChatActiveHead = () => {
 
     const dispatch = useDispatch();
@@ -13,6 +18,10 @@ export const ChatActiveHead = () => {
 
     const handleDeleteChat = () => {
         dispatch(startDeleteChatList());
+    }
+
+    const handleClickBackChats = () => {
+        dispatch(resetChatActive());
     }
 
     useEffect(() => {
@@ -33,6 +42,9 @@ export const ChatActiveHead = () => {
 
     return (
         <div className="messages__head">
+            <div className="messages__head-back-xs" onClick={handleClickBackChats}>
+                <FontAwesomeIcon icon={faArrowLeft} />
+            </div>
             <div className="messages__head-avatar">
                 <span>{firstLetter}</span>
             </div>

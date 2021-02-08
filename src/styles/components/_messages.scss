@@ -42,6 +42,13 @@
             color: darken($gray, 30);
             cursor: pointer;
         }
+
+        &-back-xs{
+            color: darken($gray, 30);
+            margin-right: 1rem;
+            display: none;
+            cursor: pointer;
+        }
     }
 
     &__body{
@@ -105,5 +112,11 @@
             border-radius: .5rem;
             max-width: 80%;
         }
+    }
+}
+
+@media (max-width: 580px){
+    .messages__head-back-xs{
+        display: block;
     }
 }
