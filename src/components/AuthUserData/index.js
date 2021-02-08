@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faChevronDown, faSignOutAlt, faCog } from '@fortawesome/free-solid-svg-icons'
+import { faChevronDown, faSignOutAlt } from '@fortawesome/free-solid-svg-icons'
 import { DropDown } from '../Dropdown'
 import { startLogout } from '../../redux/actions/auth.actions'
 
