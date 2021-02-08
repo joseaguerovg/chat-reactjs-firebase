@@ -21,11 +21,13 @@ export const AuthUserData = () => {
         dispatch(startLogout());
     }
 
-    const itemsDropdown = [{
-        text: 'Settings',
-        icon: faCog,
-        onClick: false
-    }, {
+    const itemsDropdown = [
+    //     {
+    //     text: 'Settings',
+    //     icon: faCog,
+    //     onClick: false
+    // }, 
+    {
         text: 'Logout',
         icon: faSignOutAlt,
         onClick: handleLogout
