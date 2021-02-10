@@ -1,24 +1,31 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { useOutsideClick } from '../../hooks/useOutsideClick'
-import { useDispatch, useSelector } from 'react-redux'
-import { closeUsersModal } from '../../redux/actions/ui.actions'
+import { useDispatch } from 'react-redux'
 import { ChatModalItem } from '../ChatModalItem'
 
 import loader from '../../assets/loader.svg'
+import { getUsersSuccess } from '../../redux/actions/users.action'
+import useUsers from '../../hooks/useUsers'
 
-export const NewChatModal = () => {
+export const NewChatModal = ({setModal}) => {
 
     const dispatch = useDispatch();
-    const { ui, users:usersState } = useSelector(state => state);
 
-    const { users } = usersState;
-    const { loading } = ui;
+    const users = useUsers();
+    const [loading, setLoading] = useState(true);
 
     const handleCloseModalUsers = () => {
-        dispatch(closeUsersModal());
+        setModal(false)
     }
 
     const modalRef = useOutsideClick(handleCloseModalUsers);
+
+    useEffect(() => {
+        if(users.length > 0 ){
+            dispatch(getUsersSuccess(users));
+            setLoading(false);
+        }
+    }, [dispatch, users])
 
     return (
         <div className="modal__bg">

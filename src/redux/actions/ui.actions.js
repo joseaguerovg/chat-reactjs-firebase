@@ -16,11 +16,3 @@ export const setFormError = (message) => ({
 export const removeFormError = () => ({
     type: types.UI_REMOVE_FORM_ERROR
 })
-
-export const openUsersModal = () => ({
-    type: types.UI_OPEN_USERS_MODAL
-})
-
-export const closeUsersModal = () => ({
-    type: types.UI_CLOSE_USERS_MODAL
-})

@@ -1,7 +1,7 @@
 import Swal from 'sweetalert2';
 import { firebase, db } from '../../firebase/firebase.config';
 import { types } from "../types/types"
-import { closeUsersModal, finishLoadingAction, startLoadingAction } from './ui.actions';
+import { finishLoadingAction, startLoadingAction } from './ui.actions';
 
 export const startCreateAChat = (uidSelected, nameSelected) => {
 
@@ -34,7 +34,6 @@ export const startCreateAChat = (uidSelected, nameSelected) => {
                     })
                 
                 dispatch(startGetChatMessages(newChat.id, uidSelected));
-                dispatch(closeUsersModal());
                     
             }else{
                 const { chats } = getState().chats;
@@ -56,7 +55,6 @@ export const startCreateAChat = (uidSelected, nameSelected) => {
                 }
 
                 dispatch(startGetChatMessages(existChat, uidSelected));
-                dispatch(closeUsersModal());
             }
             dispatch(finishLoadingAction());
         } catch (error) {
@@ -99,7 +97,7 @@ export const startGetChatMessages = (chatId, userId) => {
 }
 
 export const startSendMessage = (message) => {
-    return async (dispatch, getState) => {
+    return async (_, getState) => {
 
         const { auth, chats: chatsState } = getState();
 

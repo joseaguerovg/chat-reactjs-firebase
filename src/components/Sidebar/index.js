@@ -2,20 +2,15 @@ import React from 'react'
 import { AuthUserData } from '../AuthUserData'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faPlus } from '@fortawesome/free-solid-svg-icons'
-import { useDispatch, useSelector } from 'react-redux'
-import { openUsersModal } from '../../redux/actions/ui.actions'
-import { startGetUsers } from '../../redux/actions/users.action'
+import { useSelector } from 'react-redux'
 import { ChatList } from '../ChatList'
 
-export const Sidebar = () => {
-
-    const dispatch = useDispatch();
+export const Sidebar = ({setModal}) => {
 
     const { active } = useSelector(state => state.chats)
 
     const handleClickOpenAllUsers = () => {
-        dispatch(openUsersModal());
-        dispatch(startGetUsers());
+        setModal(true)
     }
 
     return (
