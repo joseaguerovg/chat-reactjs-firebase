@@ -1,4 +1,5 @@
 import Swal from 'sweetalert2';
+import { v4 as uuidv4 } from 'uuid';
 import { firebase, db } from '../../firebase/firebase.config';
 import { types } from "../types/types"
 import { finishLoadingAction, startLoadingAction } from './ui.actions';
@@ -117,12 +118,23 @@ export const startSendMessage = (message) => {
             updateLastMessageUsers(userId, message, chatId)
         }
 
-        db.collection('chats').doc(chatId).update({
-            messages: firebase.firestore.FieldValue.arrayUnion({
-                content: message,
-                userId: uid
-            })
-        })
+        const chatsRef = db.collection('chats').doc(chatId);
+
+        chatsRef.get()
+            .then(doc => {
+                const messages = doc.data().messages
+
+                chatsRef.update({
+                    messages: [...messages, {
+                        id: uuidv4(),
+                        content: message,
+                        userId: uid
+                    }]
+                })
+            });
+
+
+        
 
     }
 }

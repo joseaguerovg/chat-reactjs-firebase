@@ -30,7 +30,7 @@ export const ChatActiveBody = () => {
         <div className="messages__body">
             {
                 messages.map(message => (
-                    <ChatActiveBodyMessage key={`${message.content}-${message.userId}`} {...message} />
+                    <ChatActiveBodyMessage key={message.id} {...message} />
                 ))
             }
             <div ref={messageRef}></div>
