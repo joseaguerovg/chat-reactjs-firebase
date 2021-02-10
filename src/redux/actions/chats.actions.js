@@ -174,6 +174,8 @@ const createASeccondChat = ({chatId, message, name, uid: userId, userId: userSec
     db.collection('users').doc(userSeccondId).update({
         chats: firebase.firestore.FieldValue.arrayUnion(newChat)
     });
+
+    updateLastMessageUsers(userId, message, chatId)
 }
 
 const existSeccondChat = (chats, chatId) => {
@@ -219,4 +221,8 @@ export const activeChat = (data) => ({
 
 export const resetChatActive = () => ({
     type: types.CHAT_ACTIVE_RESET
+})
+
+export const resetChats = () => ({
+    type: types.CHATS_RESET
 })
